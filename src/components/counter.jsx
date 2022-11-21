@@ -59,7 +59,7 @@ class Counter extends Component {
 
   newMethod() {
     let classes = "badge m-2 bg-";
-    classes += this.props.couter.value === 0 ? "warning" : "primary";
+    classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
 

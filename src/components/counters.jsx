@@ -10,7 +10,17 @@ class Counters extends Component {
     ],
   };
 
-  handleIncreament = (counter) => {};
+  handleIncreament = (counter) => {
+
+const  counters={...this.state.couters};
+counters[0]={...counter}
+counters[0].value++;
+
+this.setState(counters[0]);
+
+console.log(counters[0])
+
+  };
   handleReset = () => {
     const counters = this.state.couters.map((c) => {
       c.value = 0;
