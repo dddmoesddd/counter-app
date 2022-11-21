@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Counter from "./counter";
 class Counters extends Component {
   state = {
-    couters: [
+    counters: [
       { id: 1, value: 0 },
       { id: 2, value: 6 },
       { id: 3, value: 0 },
@@ -11,18 +11,17 @@ class Counters extends Component {
   };
 
   handleIncreament = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value++;
 
-const  counters={...this.state.couters};
-counters[0]={...counter}
-counters[0].value++;
+    this.setState(this.state.counters[index]);
 
-this.setState(counters[0]);
-
-console.log(counters[0])
-
+    console.log(counters[index]);
   };
   handleReset = () => {
-    const counters = this.state.couters.map((c) => {
+    const counters = this.state.counters.map((c) => {
       c.value = 0;
       return c;
     });
@@ -31,8 +30,8 @@ console.log(counters[0])
   };
   handleDelete = (couterId) => {
     console.log("Event Handler Called", { couterId });
-    const couters = this.state.couters.filter((c) => c.id !== couterId);
-    this.setState({ couters });
+    const counters = this.state.counters.filter((c) => c.id !== couterId);
+    this.setState({ counters });
   };
   render() {
     return (
@@ -43,7 +42,7 @@ console.log(counters[0])
         >
           Reset
         </button>
-        {this.state.couters.map((counter) => (
+        {this.state.counters.map((counter) => (
           <Counter
             onDelete={this.handleDelete}
             onIncreament={this.handleIncreament}
